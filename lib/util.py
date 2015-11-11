@@ -251,18 +251,14 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 block_explorer_info = {
-    'explorer.gamecredits.net': ('http://explorer.gamecredits.net',
+    'explorer.gamecredits.net': ('http://gmc.cryptocloudhosting.org:3001',
                         {'tx': 'tx', 'addr': 'address'}),
-    'block-explorer.com': ('https://block-explorer.com',
+    'gmc-backupchain.com': ('http://5.196.70.166:3001/',
                         {'tx': 'tx', 'addr': 'address'}),
-    'Blockr.io': ('https://gmc.blockr.io',
-                        {'tx': 'tx/info', 'addr': 'address/info'}),
-    'SoChain': ('https://chain.so',
-                        {'tx': 'tx/GMC', 'addr': 'address/GMC'}),
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'explorer.gamecredits.net')
+    return config.get('block_explorer', 'gmc.cryptocloudhosting.org:3001')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
