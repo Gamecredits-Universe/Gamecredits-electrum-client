@@ -258,7 +258,7 @@ block_explorer_info = {
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'gmc.cryptocloudhosting.org:3001')
+    return config.get('block_explorer', 'explorer.gamecredits.net')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
