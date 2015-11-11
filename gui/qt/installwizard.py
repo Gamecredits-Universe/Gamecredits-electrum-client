@@ -19,7 +19,7 @@ from util import *
 from electrum_ltc.plugins import always_hook, run_hook
 from electrum_ltc.mnemonic import prepare_seed
 
-MSG_ENTER_ANYTHING    = _("Please enter a seed phrase, a master key, a list of Litecoin addresses, or a list of private keys")
+MSG_ENTER_ANYTHING    = _("Please enter a seed phrase, a master key, a list of Gamecredits addresses, or a list of private keys")
 MSG_SHOW_MPK          = _("Here is your master public key")
 MSG_ENTER_MPK         = _("Please enter your master public key")
 MSG_ENTER_SEED_OR_MPK = _("Please enter a seed phrase or a master key (xpub or xprv)")

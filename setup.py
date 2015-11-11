@@ -50,10 +50,10 @@ setup(
     },
     scripts=['electrum-ltc'],
     data_files=data_files,
-    description="Lightweight Litecoin Wallet",
+    description="Lightweight Gamecredits Wallet",
     author="Thomas Voegtlin",
     author_email="thomasv@electrum.org",
     license="GNU GPLv3",
     url="http://electrum-ltc.org",
-    long_description="""Lightweight Litecoin Wallet"""
+    long_description="""Lightweight Gamecredits Wallet"""
 )

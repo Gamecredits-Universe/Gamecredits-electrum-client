@@ -251,7 +251,7 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 block_explorer_info = {
-    'explorer.litecoin.net': ('http://explorer.litecoin.net',
+    'explorer.gamecredits.net': ('http://explorer.gamecredits.net',
                         {'tx': 'tx', 'addr': 'address'}),
     'block-explorer.com': ('https://block-explorer.com',
                         {'tx': 'tx', 'addr': 'address'}),
@@ -262,7 +262,7 @@ block_explorer_info = {
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'explorer.litecoin.net')
+    return config.get('block_explorer', 'explorer.gamecredits.net')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
@@ -290,7 +290,7 @@ def parse_URI(uri):
         return {'address': uri}
 
     u = urlparse.urlparse(uri)
-    assert u.scheme == 'litecoin'
+    assert u.scheme == 'gamecredits'
 
     address = u.path
 
@@ -342,7 +342,7 @@ def create_URI(addr, amount, message):
         if type(message) == unicode:
             message = message.encode('utf8')
         query.append('message=%s'%urllib.quote(message))
-    p = urlparse.ParseResult(scheme='litecoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urlparse.ParseResult(scheme='gamecredits', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return urlparse.urlunparse(p)
 
 

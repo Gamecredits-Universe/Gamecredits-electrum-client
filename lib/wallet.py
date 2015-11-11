@@ -1306,7 +1306,7 @@ class Abstract_Wallet(PrintError):
         if not r:
             return
         out = copy.copy(r)
-        out['URI'] = 'litecoin:' + addr + '?amount=' + util.format_satoshis(out.get('amount'))
+        out['URI'] = 'gamecredits:' + addr + '?amount=' + util.format_satoshis(out.get('amount'))
         out['status'] = self.get_request_status(addr)
         # check if bip70 file exists
         rdir = config.get('requests_dir')

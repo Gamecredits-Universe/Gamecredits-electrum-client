@@ -1,4 +1,4 @@
-Electrum-LTC - lightweight Litecoin client
+Electrum-LTC - lightweight Gamecredits client
 ==========================================
 
 ::

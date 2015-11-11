@@ -186,7 +186,7 @@ class Plugin(BasePlugin):
         except Exception, e:
             give_error(e)
         try:
-            self.get_client().get_address('Litecoin', address_n, True)
+            self.get_client().get_address('Gamecredits', address_n, True)
         except Exception, e:
             give_error(e)
         finally:
@@ -233,7 +233,7 @@ class Plugin(BasePlugin):
         inputs = self.tx_inputs(tx, True)
         outputs = self.tx_outputs(tx)
         try:
-            signed_tx = client.sign_tx('Litecoin', inputs, outputs)[1]
+            signed_tx = client.sign_tx('Gamecredits', inputs, outputs)[1]
         except Exception, e:
             self.handler.stop()
             give_error(e)
@@ -455,7 +455,7 @@ class KeepKeyWallet(BIP32_HD_Wallet):
         except Exception, e:
             give_error(e)
         try:
-            msg_sig = self.plugin.get_client().sign_message('Litecoin', address_n, message)
+            msg_sig = self.plugin.get_client().sign_message('Gamecredits', address_n, message)
         except Exception, e:
             give_error(e)
         finally:
@@ -502,7 +502,7 @@ class KeepKeyWallet(BIP32_HD_Wallet):
             address = self.addresses(False)[0]
             address_id = self.address_id(address)
             n = self.get_client().expand_path(address_id)
-            device_address = self.get_client().get_address('Litecoin', n)
+            device_address = self.get_client().get_address('Gamecredits', n)
             self.device_checked = True
 
             if device_address != address:

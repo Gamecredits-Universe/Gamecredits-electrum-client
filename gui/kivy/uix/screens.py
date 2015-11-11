@@ -203,7 +203,7 @@ class SendScreen(CScreen):
         to_address = m.group(2) if m else r
 
         if not bitcoin.is_address(to_address):
-            self.app.show_error(_('Invalid Litecoin Address') + ':\n' + to_address)
+            self.app.show_error(_('Invalid Gamecredits Address') + ':\n' + to_address)
             return
 
         amount = self.app.get_amount(scrn.amount_e.text)
