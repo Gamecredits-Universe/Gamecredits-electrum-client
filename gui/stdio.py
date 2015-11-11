@@ -1,10 +1,10 @@
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum_ltc.wallet import WalletStorage, Wallet
-from electrum_ltc.util import format_satoshis, set_verbosity, StoreDict
-from electrum_ltc.bitcoin import is_valid, COIN
-from electrum_ltc.network import filter_protocol
+from electrum_gmc.wallet import WalletStorage, Wallet
+from electrum_gmc.util import format_satoshis, set_verbosity, StoreDict
+from electrum_gmc.bitcoin import is_valid, COIN
+from electrum_gmc.network import filter_protocol
 import sys, getpass, datetime
 
 # minimal fdisk like gui for console usage
@@ -17,7 +17,7 @@ class ElectrumGui:
         self.config = config
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum-ltc create'"
+            print "Wallet not found. try 'electrum-gmc create'"
             exit()
 
         self.done = 0
@@ -222,12 +222,12 @@ class ElectrumGui:
             print(_('Error'))
 
     def network_dialog(self):
-        print("use 'electrum-ltc setconfig server/proxy' to change your network settings")
+        print("use 'electrum-gmc setconfig server/proxy' to change your network settings")
         return True
 
 
     def settings_dialog(self):
-        print("use 'electrum-ltc setconfig' to change your settings")
+        print("use 'electrum-gmc setconfig' to change your settings")
         return True
 
     def password_dialog(self):

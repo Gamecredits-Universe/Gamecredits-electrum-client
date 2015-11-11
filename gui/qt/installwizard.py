@@ -6,18 +6,18 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-import electrum_ltc as electrum
-from electrum_ltc.i18n import _
-from electrum_ltc import Wallet
-from electrum_ltc import bitcoin
-from electrum_ltc import util
+import electrum_gmc as electrum
+from electrum_gmc.i18n import _
+from electrum_gmc import Wallet
+from electrum_gmc import bitcoin
+from electrum_gmc import util
 
 import seed_dialog
 from network_dialog import NetworkDialog
 from util import *
 
-from electrum_ltc.plugins import always_hook, run_hook
-from electrum_ltc.mnemonic import prepare_seed
+from electrum_gmc.plugins import always_hook, run_hook
+from electrum_gmc.mnemonic import prepare_seed
 
 MSG_ENTER_ANYTHING    = _("Please enter a seed phrase, a master key, a list of Gamecredits addresses, or a list of private keys")
 MSG_SHOW_MPK          = _("Here is your master public key")

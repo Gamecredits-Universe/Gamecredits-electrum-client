@@ -22,7 +22,7 @@ from qrtextedit import ScanQRTextEdit
 
 import re
 from decimal import Decimal
-from electrum_ltc import bitcoin
+from electrum_gmc import bitcoin
 
 import util
 
@@ -160,7 +160,7 @@ class PayToEdit(ScanQRTextEdit):
         return len(self.lines()) > 1
 
     def paytomany(self):
-        from electrum_ltc.i18n import _
+        from electrum_gmc.i18n import _
         self.setText("\n\n\n")
         self.update_size()
         msg = '\n'.join([

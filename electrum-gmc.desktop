@@ -3,10 +3,10 @@
 
 [Desktop Entry]
 Comment=Lightweight Gamecredits Client
-Exec=electrum-ltc %u
-GenericName[en_US]=Electrum-LTC
-GenericName=Electrum-LTC
-Icon=electrum-ltc
+Exec=electrum-gmc %u
+GenericName[en_US]=Electrum-GMC
+GenericName=Electrum-GMC
+Icon=electrum-gmc
 Name[en_US]=Electrum Gamecredits Wallet
 Name=Electrum Gamecredits Wallet
 Categories=Network;

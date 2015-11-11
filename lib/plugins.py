@@ -32,10 +32,10 @@ class Plugins(PrintError):
     def __init__(self, config, is_local, gui_name):
         if is_local:
             find = imp.find_module('plugins')
-            plugins = imp.load_module('electrum_ltc_plugins', *find)
+            plugins = imp.load_module('electrum_gmc_plugins', *find)
             self.pathname = find[1]
         else:
-            plugins = __import__('electrum_ltc_plugins')
+            plugins = __import__('electrum_gmc_plugins')
             self.pathname = None
 
         self.plugins = {}
@@ -59,13 +59,13 @@ class Plugins(PrintError):
         return len(self.plugins)
 
     def load_plugin(self, config, name):
-        full_name = 'electrum_ltc_plugins.' + name
+        full_name = 'electrum_gmc_plugins.' + name
         try:
             if self.pathname:  # local
                 path = os.path.join(self.pathname, name + '.py')
                 p = imp.load_source(full_name, path)
             else:
-                p = __import__(full_name, fromlist=['electrum_ltc_plugins'])
+                p = __import__(full_name, fromlist=['electrum_gmc_plugins'])
             plugin = p.Plugin(self, config, name)
             # Inform the plugin of our windows
             for window in self.windows:

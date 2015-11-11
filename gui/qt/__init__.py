@@ -29,11 +29,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.plugins import run_hook
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage
-from electrum_ltc.paymentrequest import InvoiceStore
-from electrum_ltc.contacts import Contacts
+from electrum_gmc.i18n import _, set_language
+from electrum_gmc.plugins import run_hook
+from electrum_gmc import SimpleConfig, Wallet, WalletStorage
+from electrum_gmc.paymentrequest import InvoiceStore
+from electrum_gmc.contacts import Contacts
 from installwizard import InstallWizard
 
 
@@ -78,7 +78,7 @@ class ElectrumGui:
         # init tray
         self.dark_icon = self.config.get("dark_icon", False)
         self.tray = QSystemTrayIcon(self.tray_icon(), None)
-        self.tray.setToolTip('Electrum-LTC')
+        self.tray.setToolTip('Electrum-GMC')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()
@@ -94,7 +94,7 @@ class ElectrumGui:
             submenu.addAction(_("Close"), window.close)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum-LTC"), self.close)
+        m.addAction(_("Exit Electrum-GMC"), self.close)
         self.tray.setContextMenu(m)
 
     def tray_icon(self):

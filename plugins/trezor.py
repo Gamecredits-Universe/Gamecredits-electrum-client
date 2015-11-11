@@ -10,21 +10,21 @@ from functools import partial
 from PyQt4.Qt import QMessageBox, QDialog, QVBoxLayout, QLabel, QThread, SIGNAL, QGridLayout, QInputDialog, QPushButton
 import PyQt4.QtCore as QtCore
 
-import electrum_ltc as electrum
-from electrum_ltc import bitcoin
+import electrum_gmc as electrum
+from electrum_gmc import bitcoin
 
-from electrum_ltc.account import BIP32_Account
-from electrum_ltc.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160, xpub_from_pubkey
-from electrum_ltc.i18n import _
-from electrum_ltc.plugins import BasePlugin, hook, always_hook, run_hook
-from electrum_ltc.transaction import Transaction, deserialize, is_extended_pubkey, x_to_xpub
-from electrum_ltc.wallet import BIP32_HD_Wallet
-from electrum_ltc.util import print_error, print_msg
-from electrum_ltc.wallet import pw_decode, bip32_private_derivation, bip32_root
+from electrum_gmc.account import BIP32_Account
+from electrum_gmc.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160, xpub_from_pubkey
+from electrum_gmc.i18n import _
+from electrum_gmc.plugins import BasePlugin, hook, always_hook, run_hook
+from electrum_gmc.transaction import Transaction, deserialize, is_extended_pubkey, x_to_xpub
+from electrum_gmc.wallet import BIP32_HD_Wallet
+from electrum_gmc.util import print_error, print_msg
+from electrum_gmc.wallet import pw_decode, bip32_private_derivation, bip32_root
 
-from electrum_ltc_gui.qt.util import *
-from electrum_ltc_gui.qt.main_window import StatusBarButton, ElectrumWindow
-from electrum_ltc_gui.qt.installwizard import InstallWizard
+from electrum_gmc_gui.qt.util import *
+from electrum_gmc_gui.qt.main_window import StatusBarButton, ElectrumWindow
+from electrum_gmc_gui.qt.installwizard import InstallWizard
 
 try:
     from trezorlib.client import types
@@ -633,7 +633,7 @@ class TrezorQtHandler:
             self.passphrase = unicodedata.normalize('NFKD', unicode(passphrase)) if passphrase else ''
         else:
             assert type(self.win) is InstallWizard
-            from electrum_ltc_gui.qt.password_dialog import make_password_dialog, run_password_dialog
+            from electrum_gmc_gui.qt.password_dialog import make_password_dialog, run_password_dialog
             d = QDialog()
             d.setModal(1)
             d.setLayout(make_password_dialog(d, None, self.message, False))

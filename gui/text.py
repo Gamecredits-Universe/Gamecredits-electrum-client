@@ -1,11 +1,11 @@
 import curses, datetime, locale
 from decimal import Decimal
 _ = lambda x:x
-from electrum_ltc.util import format_satoshis, set_verbosity
-from electrum_ltc.util import StoreDict
-from electrum_ltc.bitcoin import is_valid, COIN
+from electrum_gmc.util import format_satoshis, set_verbosity
+from electrum_gmc.util import StoreDict
+from electrum_gmc.bitcoin import is_valid, COIN
 
-from electrum_ltc import Wallet, WalletStorage
+from electrum_gmc import Wallet, WalletStorage
 
 import tty, sys
 
@@ -18,7 +18,7 @@ class ElectrumGui:
         self.network = network
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum-ltc create'"
+            print "Wallet not found. try 'electrum-gmc create'"
             exit()
 
         self.wallet = Wallet(storage)

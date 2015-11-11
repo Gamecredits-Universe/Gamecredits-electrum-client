@@ -20,11 +20,11 @@
 
 import sys
 #, time, datetime, re, threading
-#from electrum_ltc.i18n import _, set_language
-from electrum_ltc.util import print_error, print_msg
+#from electrum_gmc.i18n import _, set_language
+from electrum_gmc.util import print_error, print_msg
 
 #:TODO: replace this with kivy's own plugin managment
-#from electrum_ltc.plugins import run_hook
+#from electrum_gmc.plugins import run_hook
 #import os.path, json, ast, traceback
 #import shutil
 
@@ -40,10 +40,10 @@ except ImportError:
 kivy.require('1.8.0')
 from kivy.logger import Logger
 
-from electrum_ltc.bitcoin import MIN_RELAY_TX_FEE
+from electrum_gmc.bitcoin import MIN_RELAY_TX_FEE
 
 from main_window import ElectrumWindow
-#from electrum_ltc.plugins import init_plugins
+#from electrum_gmc.plugins import init_plugins
 
 #:TODO find a equivalent method to register to `bitcoin:` uri
 #: ref: http://stackoverflow.com/questions/30931/register-file-extensions-mime-types-in-linux

@@ -22,10 +22,10 @@ import os.path, json, ast, traceback
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-from electrum_ltc.i18n import _
-from electrum_ltc.util import print_error, print_msg
-from electrum_ltc import DEFAULT_PORTS
-from electrum_ltc.network import serialize_server, deserialize_server
+from electrum_gmc.i18n import _
+from electrum_gmc.util import print_error, print_msg
+from electrum_gmc import DEFAULT_PORTS
+from electrum_gmc.network import serialize_server, deserialize_server
 
 from util import *
 

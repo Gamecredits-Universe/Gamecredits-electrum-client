@@ -1,7 +1,7 @@
-from electrum_ltc.plugins import BasePlugin, hook
-from electrum_ltc_gui.qt.util import WaitingDialog, EnterButton
-from electrum_ltc.util import print_msg, print_error
-from electrum_ltc.i18n import _
+from electrum_gmc.plugins import BasePlugin, hook
+from electrum_gmc_gui.qt.util import WaitingDialog, EnterButton
+from electrum_gmc.util import print_msg, print_error
+from electrum_gmc.i18n import _
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *

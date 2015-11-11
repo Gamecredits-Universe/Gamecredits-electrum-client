@@ -32,12 +32,12 @@ sys.path.insert(0, os.path.join(script_dir, 'packages'))
 
 import qrcode
 
-imp.load_module('electrum_ltc', *imp.find_module('lib'))
+imp.load_module('electrum_gmc', *imp.find_module('lib'))
 
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage, format_satoshis
-from electrum_ltc import util
-from electrum_ltc.transaction import Transaction
-from electrum_ltc.bitcoin import base_encode, base_decode
+from electrum_gmc import SimpleConfig, Wallet, WalletStorage, format_satoshis
+from electrum_gmc import util
+from electrum_gmc.transaction import Transaction
+from electrum_gmc.bitcoin import base_encode, base_decode
 
 def modal_dialog(title, msg = None):
     droid.dialogCreateAlert(title,msg)
@@ -90,7 +90,7 @@ def make_layout(s):
 
         <TextView
           android:id="@+id/textElectrum"
-          android:text="Electrum-LTC Authenticator"
+          android:text="Electrum-GMC Authenticator"
           android:textSize="7pt"
           android:textColor="#ff4444ff"
           android:gravity="left"
@@ -160,7 +160,7 @@ def add_menu():
 def make_bitmap(data):
     # fixme: this is highly inefficient
     import qrcode
-    from electrum_ltc import bmp
+    from electrum_gmc import bmp
     qr = qrcode.QRCode()
     qr.add_data(data)
     bmp.save_qrcode(qr,"/sdcard/sl4a/qrcode.bmp")
@@ -174,7 +174,7 @@ class Authenticator:
     def __init__(self):
         global wallet
         self.qr_data = None
-        storage = WalletStorage('/sdcard/electrum-ltc/authenticator')
+        storage = WalletStorage('/sdcard/electrum-gmc/authenticator')
         if not storage.file_exists:
 
             action = self.restore_or_create()

@@ -33,18 +33,18 @@ import PyQt4.QtCore as QtCore
 
 import icons_rc
 
-from electrum_ltc.bitcoin import MIN_RELAY_TX_FEE, COIN, is_valid
-from electrum_ltc.plugins import run_hook
-from electrum_ltc.i18n import _
-from electrum_ltc.util import block_explorer, block_explorer_info, block_explorer_URL
-from electrum_ltc.util import format_satoshis, format_satoshis_plain, format_time
-from electrum_ltc.util import PrintError, NotEnoughFunds, StoreDict
-from electrum_ltc import Transaction
-from electrum_ltc import mnemonic
-from electrum_ltc import util, bitcoin, commands, Wallet
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage
-from electrum_ltc import Imported_Wallet
-from electrum_ltc import paymentrequest
+from electrum_gmc.bitcoin import MIN_RELAY_TX_FEE, COIN, is_valid
+from electrum_gmc.plugins import run_hook
+from electrum_gmc.i18n import _
+from electrum_gmc.util import block_explorer, block_explorer_info, block_explorer_URL
+from electrum_gmc.util import format_satoshis, format_satoshis_plain, format_time
+from electrum_gmc.util import PrintError, NotEnoughFunds, StoreDict
+from electrum_gmc import Transaction
+from electrum_gmc import mnemonic
+from electrum_gmc import util, bitcoin, commands, Wallet
+from electrum_gmc import SimpleConfig, Wallet, WalletStorage
+from electrum_gmc import Imported_Wallet
+from electrum_gmc import paymentrequest
 
 from amountedit import BTCAmountEdit, MyLineEdit, BTCkBEdit
 from network_dialog import NetworkDialog
@@ -56,7 +56,7 @@ from transaction_dialog import show_transaction
 
 
 
-from electrum_ltc import ELECTRUM_VERSION
+from electrum_gmc import ELECTRUM_VERSION
 import re
 
 from util import *
@@ -81,8 +81,8 @@ class StatusBarButton(QPushButton):
             self.func()
 
 
-from electrum_ltc.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
-from electrum_ltc.paymentrequest import PaymentRequest, get_payment_request
+from electrum_gmc.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
+from electrum_gmc.paymentrequest import PaymentRequest, get_payment_request
 
 pr_icons = {
     PR_UNPAID:":icons/unpaid.png",
@@ -141,7 +141,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         if self.config.get("is_maximized"):
             self.showMaximized()
 
-        self.setWindowIcon(QIcon(":icons/electrum-ltc.png"))
+        self.setWindowIcon(QIcon(":icons/electrum-gmc.png"))
         self.init_menubar()
 
         QShortcut(QKeySequence("Ctrl+W"), self, self.close)
@@ -241,7 +241,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         self.dummy_address = a[0] if a else None
         self.accounts_expanded = self.wallet.storage.get('accounts_expanded',{})
         self.current_account = self.wallet.storage.get("current_account", None)
-        title = 'Electrum-LTC %s  -  %s' % (self.wallet.electrum_version, self.wallet.basename())
+        title = 'Electrum-GMC %s  -  %s' % (self.wallet.electrum_version, self.wallet.basename())
         if self.wallet.is_watching_only():
             title += ' [%s]' % (_('watching only'))
         self.setWindowTitle( title )
@@ -273,8 +273,8 @@ class ElectrumWindow(QMainWindow, PrintError):
         if self.wallet.is_watching_only():
             msg = ' '.join([
                 _("This wallet is watching-only."),
-                _("This means you will not be able to spend litecoins with it."),
-                _("Make sure you own the seed phrase or the private keys, before you request litecoins to be sent to this wallet.")
+                _("This means you will not be able to spend gamecreditss with it."),
+                _("Make sure you own the seed phrase or the private keys, before you request gamecreditss to be sent to this wallet.")
             ])
             QMessageBox.warning(self, _('Information'), msg, _('OK'))
         run_hook('load_wallet', wallet, self)
@@ -399,7 +399,7 @@ class ElectrumWindow(QMainWindow, PrintError):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-ltc.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-gmc.org"))
         help_menu.addSeparator()
         help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://docs.electrum.org/")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
@@ -407,17 +407,17 @@ class ElectrumWindow(QMainWindow, PrintError):
         self.setMenuBar(menubar)
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-LTC",
+        QMessageBox.about(self, "Electrum-GMC",
             _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Gamecredits. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Gamecredits system."))
 
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/pooler/electrum-ltc/issues\">https://github.com/pooler/electrum-ltc/issues</a><br/><br/>",
+            "<a href=\"https://github.com/pooler/electrum-gmc/issues\">https://github.com/pooler/electrum-gmc/issues</a><br/><br/>",
             _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        QMessageBox.information(self, "Electrum-LTC - " + _("Reporting Bugs"), msg)
+        QMessageBox.information(self, "Electrum-GMC - " + _("Reporting Bugs"), msg)
 
 
     def new_transaction(self, tx):
@@ -449,7 +449,7 @@ class ElectrumWindow(QMainWindow, PrintError):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-LTC", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Electrum-GMC", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -502,9 +502,9 @@ class ElectrumWindow(QMainWindow, PrintError):
         if self.decimal_point == 2:
             return 'bits'
         if self.decimal_point == 5:
-            return 'mLTC'
+            return 'mGMC'
         if self.decimal_point == 8:
-            return 'LTC'
+            return 'GMC'
         raise Exception('Unknown base unit')
 
     def update_status(self):
@@ -1349,7 +1349,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         if r or (name and sig):
             def get_payment_request_thread():
                 if name and sig:
-                    from electrum_ltc import paymentrequest
+                    from electrum_gmc import paymentrequest
                     pr = paymentrequest.serialize_request(out).SerializeToString()
                     self.payment_request = paymentrequest.PaymentRequest(pr)
                 else:
@@ -1891,7 +1891,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         vbox.addWidget(QLabel(_('Account name')+':'))
         e = QLineEdit()
         vbox.addWidget(e)
-        msg = _("Note: Newly created accounts are 'pending' until they receive litecoins.") + " " \
+        msg = _("Note: Newly created accounts are 'pending' until they receive gamecreditss.") + " " \
             + _("You will need to wait for 2 confirmations until the correct balance is displayed and more addresses are created for that account.")
         l = QLabel(msg)
         l.setWordWrap(True)
@@ -2214,7 +2214,7 @@ class ElectrumWindow(QMainWindow, PrintError):
 
 
     def read_tx_from_qrcode(self):
-        from electrum_ltc import qrscanner
+        from electrum_gmc import qrscanner
         try:
             data = qrscanner.scan_qr(self.config)
         except BaseException, e:
@@ -2262,7 +2262,7 @@ class ElectrumWindow(QMainWindow, PrintError):
             self.show_transaction(tx)
 
     def do_process_from_txid(self):
-        from electrum_ltc import transaction
+        from electrum_gmc import transaction
         txid, ok = QInputDialog.getText(self, _('Lookup transaction'), _('Transaction ID') + ':')
         if ok and txid:
             txid = str(txid).strip()
@@ -2301,7 +2301,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'electrum-ltc-private-keys.csv'
+        defaultname = 'electrum-gmc-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2381,7 +2381,7 @@ class ElectrumWindow(QMainWindow, PrintError):
     def do_export_labels(self):
         labels = self.wallet.labels
         try:
-            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-ltc_labels.dat', "*.dat")
+            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-gmc_labels.dat', "*.dat")
             if fileName:
                 with open(fileName, 'w+') as f:
                     json.dump(labels, f)
@@ -2395,7 +2395,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         d.setWindowTitle(_('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/electrum-ltc-history.csv')
+        defaultname = os.path.expanduser('~/electrum-gmc-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2550,7 +2550,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         lang_help = _('Select which language is used in the GUI (after restart).')
         lang_label = HelpLabel(_('Language') + ':', lang_help)
         lang_combo = QComboBox()
-        from electrum_ltc.i18n import languages
+        from electrum_gmc.i18n import languages
         lang_combo.addItems(languages.values())
         try:
             index = languages.keys().index(self.config.get("language",''))
@@ -2674,9 +2674,9 @@ class ElectrumWindow(QMainWindow, PrintError):
         SSL_id_e.setReadOnly(True)
         id_widgets.append((SSL_id_label, SSL_id_e))
 
-        units = ['LTC', 'mLTC', 'bits']
+        units = ['GMC', 'mGMC', 'bits']
         msg = _('Base unit of your wallet.')\
-              + '\n1LTC=1000mLTC.\n' \
+              + '\n1GMC=1000mGMC.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
@@ -2686,9 +2686,9 @@ class ElectrumWindow(QMainWindow, PrintError):
             unit_result = units[unit_combo.currentIndex()]
             if self.base_unit() == unit_result:
                 return
-            if unit_result == 'LTC':
+            if unit_result == 'GMC':
                 self.decimal_point = 8
-            elif unit_result == 'mLTC':
+            elif unit_result == 'mGMC':
                 self.decimal_point = 5
             elif unit_result == 'bits':
                 self.decimal_point = 2
@@ -2716,7 +2716,7 @@ class ElectrumWindow(QMainWindow, PrintError):
         block_ex_combo.currentIndexChanged.connect(on_be)
         gui_widgets.append((block_ex_label, block_ex_combo))
 
-        from electrum_ltc import qrscanner
+        from electrum_gmc import qrscanner
         system_cameras = qrscanner._find_system_cameras()
         qr_combo = QComboBox()
         qr_combo.addItem("Default","default")

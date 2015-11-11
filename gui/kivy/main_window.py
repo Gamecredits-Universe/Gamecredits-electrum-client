@@ -5,12 +5,12 @@ import datetime
 import traceback
 from decimal import Decimal
 
-import electrum_ltc as electrum
-from electrum_ltc import WalletStorage, Wallet
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.contacts import Contacts
-from electrum_ltc.util import profiler
-from electrum_ltc.plugins import run_hook
+import electrum_gmc as electrum
+from electrum_gmc import WalletStorage, Wallet
+from electrum_gmc.i18n import _, set_language
+from electrum_gmc.contacts import Contacts
+from electrum_gmc.util import profiler
+from electrum_gmc.plugins import run_hook
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -26,9 +26,9 @@ from kivy.lang import Builder
 
 # lazy imports for factory so that widgets can be used in kv
 Factory.register('InstallWizard',
-                 module='electrum_ltc_gui.kivy.uix.dialogs.installwizard')
-Factory.register('InfoBubble', module='electrum_ltc_gui.kivy.uix.dialogs')
-Factory.register('ELTextInput', module='electrum_ltc_gui.kivy.uix.screens')
+                 module='electrum_gmc_gui.kivy.uix.dialogs.installwizard')
+Factory.register('InfoBubble', module='electrum_gmc_gui.kivy.uix.dialogs')
+Factory.register('ELTextInput', module='electrum_gmc_gui.kivy.uix.screens')
 
 from kivy.core.window import Window
 Window.softinput_mode = 'below_target'
@@ -41,25 +41,25 @@ util = False
 
 # register widget cache for keeping memory down timeout to forever to cache
 # the data
-Cache.register('electrum_ltc_widgets', timeout=0)
+Cache.register('electrum_gmc_widgets', timeout=0)
 
 from kivy.uix.screenmanager import Screen
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
 from kivy.uix.checkbox import CheckBox
 
-Factory.register('TabbedCarousel', module='electrum_ltc_gui.kivy.uix.screens')
+Factory.register('TabbedCarousel', module='electrum_gmc_gui.kivy.uix.screens')
 
 
 
-base_units = {'LTC':8, 'mLTC':5, 'uLTC':2}
+base_units = {'GMC':8, 'mGMC':5, 'uGMC':2}
 
 class ElectrumWindow(App):
 
     electrum_config = ObjectProperty(None)
 
     def _get_bu(self):
-        return self.electrum_config.get('base_unit', 'LTC')
+        return self.electrum_config.get('base_unit', 'GMC')
 
     def _set_bu(self, value):
         assert value in base_units.keys()
@@ -160,7 +160,7 @@ class ElectrumWindow(App):
 
         super(ElectrumWindow, self).__init__(**kwargs)
 
-        title = _('Electrum-LTC App')
+        title = _('Electrum-GMC App')
         self.electrum_config = config = kwargs.get('config', None)
         self.network = network = kwargs.get('network', None)
         self.plugins = kwargs.get('plugins', [])
@@ -186,7 +186,7 @@ class ElectrumWindow(App):
 
     def set_url(self, url):
         print "set url", url
-        url = electrum_ltc.util.parse_URI(url)
+        url = electrum_gmc.util.parse_URI(url)
         self.send_screen.set_qr_data(url)
 
     def scan_qr(self, on_complete):
@@ -364,13 +364,13 @@ class ElectrumWindow(App):
 
         #setup lazy imports for mainscreen
         Factory.register('AnimatedPopup',
-                         module='electrum_ltc_gui.kivy.uix.dialogs')
+                         module='electrum_gmc_gui.kivy.uix.dialogs')
         Factory.register('QRCodeWidget',
-                         module='electrum_ltc_gui.kivy.uix.qrcodewidget')
+                         module='electrum_gmc_gui.kivy.uix.qrcodewidget')
 
         # preload widgets. Remove this if you want to load the widgets on demand
-        #Cache.append('electrum_ltc_widgets', 'AnimatedPopup', Factory.AnimatedPopup())
-        #Cache.append('electrum_ltc_widgets', 'QRCodeWidget', Factory.QRCodeWidget())
+        #Cache.append('electrum_gmc_widgets', 'AnimatedPopup', Factory.AnimatedPopup())
+        #Cache.append('electrum_gmc_widgets', 'QRCodeWidget', Factory.QRCodeWidget())
 
         # load and focus the ui
         self.root.manager = self.root.ids['manager']
@@ -378,7 +378,7 @@ class ElectrumWindow(App):
         self.history_screen = None
         self.contacts_screen = None
 
-        self.icon = "icons/electrum-ltc.png"
+        self.icon = "icons/electrum-gmc.png"
 
         # connect callbacks
         if self.network:
@@ -444,7 +444,7 @@ class ElectrumWindow(App):
 
 
     def get_max_amount(self):
-        from electrum_ltc.util import format_satoshis_plain
+        from electrum_gmc.util import format_satoshis_plain
         inputs = self.wallet.get_spendable_coins(None)
         amount, fee = self.wallet.get_max_amount(self.electrum_config, inputs, None)
         return format_satoshis_plain(amount, self.decimal_point())
@@ -464,7 +464,7 @@ class ElectrumWindow(App):
         return amount
 
     def format_amount(self, x, is_diff=False, whitespaces=False):
-        from electrum_ltc.util import format_satoshis
+        from electrum_gmc.util import format_satoshis
         return format_satoshis(x, is_diff, self.num_zeros,
                                self.decimal_point(), whitespaces)
 
@@ -539,8 +539,8 @@ class ElectrumWindow(App):
                 import os
             icon = (os.path.dirname(os.path.realpath(__file__))
                     + '/../../' + self.icon)
-            notification.notify('Electrum-LTC', message,
-                            app_icon=icon, app_name='Electrum-LTC')
+            notification.notify('Electrum-GMC', message,
+                            app_icon=icon, app_name='Electrum-GMC')
         except ImportError:
             Logger.Error('Notification: needs plyer; `sudo pip install plyer`')
 
@@ -575,7 +575,7 @@ class ElectrumWindow(App):
         label = unicode(label)
         global is_valid
         if not is_valid:
-            from electrum_ltc.bitcoin import is_valid
+            from electrum_gmc.bitcoin import is_valid
 
         if is_valid(address):
             if label:

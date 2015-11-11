@@ -73,15 +73,15 @@ except Exception:
 # load local module as electrum
 if is_bundle or is_local or is_android:
     import imp
-    imp.load_module('electrum_ltc', *imp.find_module('lib'))
-    imp.load_module('electrum_ltc_gui', *imp.find_module('gui'))
+    imp.load_module('electrum_gmc', *imp.find_module('lib'))
+    imp.load_module('electrum_gmc_gui', *imp.find_module('gui'))
 
 
-from electrum_ltc import util
-from electrum_ltc import SimpleConfig, Network, Wallet, WalletStorage
-from electrum_ltc.util import print_msg, print_error, print_stderr, json_encode, json_decode, set_verbosity, InvalidPassword
-from electrum_ltc.plugins import Plugins, run_hook, always_hook
-from electrum_ltc.commands import get_parser, known_commands, Commands, config_variables
+from electrum_gmc import util
+from electrum_gmc import SimpleConfig, Network, Wallet, WalletStorage
+from electrum_gmc.util import print_msg, print_error, print_stderr, json_encode, json_decode, set_verbosity, InvalidPassword
+from electrum_gmc.plugins import Plugins, run_hook, always_hook
+from electrum_gmc.commands import get_parser, known_commands, Commands, config_variables
 
 
 # get password routine
@@ -102,7 +102,7 @@ def init_gui(config, network, plugins):
     gui_name = config.get('gui', 'qt')
     if gui_name in ['lite', 'classic']:
         gui_name = 'qt'
-    gui = __import__('electrum_ltc_gui.' + gui_name, fromlist=['electrum_ltc_gui'])
+    gui = __import__('electrum_gmc_gui.' + gui_name, fromlist=['electrum_gmc_gui'])
     gui = gui.ElectrumGui(config, network, plugins)
     return gui
 
@@ -175,7 +175,7 @@ def init_cmdline(config):
 
     if cmd.requires_wallet and not storage.file_exists:
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum-ltc create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-gmc create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
 
     # create wallet instance
@@ -442,7 +442,7 @@ if __name__ == '__main__':
             config_options['auto_connect'] = False
 
     if config_options.get('portable'):
-        config_options['electrum_path'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-ltc_data')
+        config_options['electrum_path'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-gmc_data')
 
     set_verbosity(config_options.get('verbose'))
 
@@ -510,7 +510,7 @@ if __name__ == '__main__':
                 network.start()
                 server = NetworkServer(config, network)
                 if config.get('websocket_server'):
-                    from electrum_ltc import websockets
+                    from electrum_gmc import websockets
                     websockets.WebSocketServer(config, server).start()
                 if config.get('requests_dir'):
                     util.check_www_dir(config.get('requests_dir'))
@@ -520,8 +520,8 @@ if __name__ == '__main__':
                 print_stderr("starting daemon (PID %d)"%p)
                 sys.exit(0)
         else:
-            print_msg("syntax: electrum-ltc daemon <start|status|stop>")
+            print_msg("syntax: electrum-gmc daemon <start|status|stop>")
             sys.exit(1)
     else:
-        print_msg("Network daemon is not running. Try 'electrum-ltc daemon start'\nIf you want to run this command offline, use the -o flag.")
+        print_msg("Network daemon is not running. Try 'electrum-gmc daemon start'\nIf you want to run this command offline, use the -o flag.")
         sys.exit(1)

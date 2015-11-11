@@ -140,20 +140,20 @@ def profiler(func):
 
 def user_dir():
     if "HOME" in os.environ:
-        return os.path.join(os.environ["HOME"], ".electrum-ltc")
+        return os.path.join(os.environ["HOME"], ".electrum-gmc")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-LTC")
+        return os.path.join(os.environ["APPDATA"], "Electrum-GMC")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-LTC")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-GMC")
     elif 'ANDROID_DATA' in os.environ:
         try:
             import jnius
             env  = jnius.autoclass('android.os.Environment')
             _dir =  env.getExternalStorageDirectory().getPath()
-            return _dir + '/electrum-ltc/'
+            return _dir + '/electrum-gmc/'
         except ImportError:
             pass
-        return "/sdcard/electrum-ltc/"
+        return "/sdcard/electrum-gmc/"
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -255,10 +255,10 @@ block_explorer_info = {
                         {'tx': 'tx', 'addr': 'address'}),
     'block-explorer.com': ('https://block-explorer.com',
                         {'tx': 'tx', 'addr': 'address'}),
-    'Blockr.io': ('https://ltc.blockr.io',
+    'Blockr.io': ('https://gmc.blockr.io',
                         {'tx': 'tx/info', 'addr': 'address/info'}),
     'SoChain': ('https://chain.so',
-                        {'tx': 'tx/LTC', 'addr': 'address/LTC'}),
+                        {'tx': 'tx/GMC', 'addr': 'address/GMC'}),
 }
 
 def block_explorer(config):

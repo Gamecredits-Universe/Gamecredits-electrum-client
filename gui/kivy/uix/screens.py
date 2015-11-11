@@ -14,11 +14,11 @@ from kivy.properties import (ObjectProperty, DictProperty, NumericProperty,
 from kivy.lang import Builder
 from kivy.factory import Factory
 
-from electrum_ltc.i18n import _
-from electrum_ltc.util import profiler
-from electrum_ltc import bitcoin
-from electrum_ltc.util import timestamp_to_datetime
-from electrum_ltc.plugins import run_hook
+from electrum_gmc.i18n import _
+from electrum_gmc.util import profiler
+from electrum_gmc import bitcoin
+from electrum_gmc.util import timestamp_to_datetime
+from electrum_gmc.plugins import run_hook
 
 class CScreen(Factory.Screen):
 
@@ -260,7 +260,7 @@ class ReceiveScreen(CScreen):
         raise
 
     def update_qr(self):
-        from electrum_ltc.util import create_URI
+        from electrum_gmc.util import create_URI
         address = self.screen.ids.get('address').text
         amount = self.screen.ids.get('amount').text
         default_text = self.screen.ids.get('amount').default_text
@@ -289,10 +289,10 @@ class ContactsScreen(CScreen):
     kvname = 'contacts'
 
     def add_new_contact(self):
-        dlg = Cache.get('electrum_ltc_widgets', 'NewContactDialog')
+        dlg = Cache.get('electrum_gmc_widgets', 'NewContactDialog')
         if not dlg:
             dlg = NewContactDialog()
-            Cache.append('electrum_ltc_widgets', 'NewContactDialog', dlg)
+            Cache.append('electrum_gmc_widgets', 'NewContactDialog', dlg)
         dlg.open()
 
     def update(self):

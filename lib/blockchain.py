@@ -22,9 +22,9 @@ import util
 from bitcoin import *
 
 try:
-    from ltc_scrypt import getPoWHash
+    from gmc_scrypt import getPoWHash
 except ImportError:
-    util.print_msg("Warning: ltc_scrypt not available, using fallback")
+    util.print_msg("Warning: gmc_scrypt not available, using fallback")
     from scrypt import scrypt_1024_1_1_80 as getPoWHash
 
 
@@ -33,7 +33,7 @@ class Blockchain(util.PrintError):
     def __init__(self, config, network):
         self.config = config
         self.network = network
-        self.headers_url = 'https://electrum-ltc.org/blockchain_headers'
+        self.headers_url = 'https://electrum-gmc.org/blockchain_headers'
         self.local_height = 0
         self.set_local_height()
 

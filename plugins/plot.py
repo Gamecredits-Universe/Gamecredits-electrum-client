@@ -1,11 +1,11 @@
 from PyQt4.QtGui import *
-from electrum_ltc.plugins import BasePlugin, hook
-from electrum_ltc.i18n import _
+from electrum_gmc.plugins import BasePlugin, hook
+from electrum_gmc.i18n import _
 
 
 import datetime
-from electrum_ltc.util import format_satoshis
-from electrum_ltc.bitcoin import COIN
+from electrum_gmc.util import format_satoshis
+from electrum_gmc.bitcoin import COIN
 
 try:
     import matplotlib.pyplot as plt
@@ -97,7 +97,7 @@ class Plugin(BasePlugin):
         ax.add_artist(anchored_box)
 
 
-        plt.ylabel('LTC')
+        plt.ylabel('GMC')
         plt.xlabel('Dates')
         xfmt = md.DateFormatter('%Y-%m-%d')
         ax.xaxis.set_major_formatter(xfmt)

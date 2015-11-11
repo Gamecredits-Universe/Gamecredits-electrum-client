@@ -2,7 +2,7 @@ from kivy.app import App
 from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 
-Factory.register('QrScannerDialog', module='electrum_ltc_gui.kivy.uix.dialogs.qr_scanner')
+Factory.register('QrScannerDialog', module='electrum_gmc_gui.kivy.uix.dialogs.qr_scanner')
 
 class NewContactDialog(Factory.AnimatedPopup):
 

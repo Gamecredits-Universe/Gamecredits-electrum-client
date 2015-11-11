@@ -63,7 +63,7 @@ class TestUtil(unittest.TestCase):
         self.assertRaises(AssertionError, parse_URI, 'gamecredits:invalidaddress')
 
     def test_parse_URI_invalid(self):
-        self.assertRaises(AssertionError, parse_URI, 'notlitecoin:LectrumELqJWMECz7W2iarBpT4VvAPqwAv')
+        self.assertRaises(AssertionError, parse_URI, 'notgamecredits:LectrumELqJWMECz7W2iarBpT4VvAPqwAv')
 
     def test_parse_URI_parameter_polution(self):
         self.assertRaises(Exception, parse_URI, 'gamecredits:LectrumELqJWMECz7W2iarBpT4VvAPqwAv?amount=0.0003&label=test&amount=30.0')

@@ -1,4 +1,4 @@
-Electrum-LTC - lightweight Gamecredits client
+Electrum-GMC - lightweight Gamecredits client
 ==========================================
 
 ::
@@ -7,7 +7,7 @@ Electrum-LTC - lightweight Gamecredits client
   Original Author: Thomas Voegtlin
   Port Maintainer: Pooler
   Language: Python
-  Homepage: https://electrum-ltc.org/
+  Homepage: https://electrum-gmc.org/
 
 
 
@@ -16,7 +16,7 @@ Electrum-LTC - lightweight Gamecredits client
 
 To run Electrum from this directory, just do::
 
-    ./electrum-ltc
+    ./electrum-gmc
 
 If you install Electrum on your system, you can run it from any
 directory.
@@ -24,7 +24,7 @@ directory.
 If you have pip, you can do::
 
     python setup.py sdist
-    sudo pip install --pre dist/Electrum-LTC-2.0.tar.gz
+    sudo pip install --pre dist/Electrum-GMC-2.0.tar.gz
 
 
 If you don't have pip, install with::
@@ -35,7 +35,7 @@ If you don't have pip, install with::
 
 
 To start Electrum from your web browser, see
-http://electrum-ltc.org/litecoin_URIs.html
+http://electrum-gmc.org/gamecredits_URIs.html
 
 
 
@@ -55,4 +55,4 @@ On Mac OS X::
     # On brew installs
     ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-    sudo hdiutil create -fs HFS+ -volname "Electrum-LTC" -srcfolder dist/Electrum-LTC.app dist/electrum-ltc-VERSION-macosx.dmg
+    sudo hdiutil create -fs HFS+ -volname "Electrum-GMC" -srcfolder dist/Electrum-GMC.app dist/electrum-gmc-VERSION-macosx.dmg

@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Electrum-LTC
+title = Electrum-GMC
 
 # (str) Package name
 package.name = kivy
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.electrum-ltc
+package.domain = org.electrum-gmc
 
 # (str) Source code where the main.py live
 source.dir = .

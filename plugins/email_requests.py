@@ -37,12 +37,12 @@ from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 import PyQt4.QtGui as QtGui
 
-from electrum_ltc.paymentrequest import PR_UNPAID, PR_PAID, PR_EXPIRED
-from electrum_ltc.plugins import BasePlugin, hook
-from electrum_ltc import util
-from electrum_ltc.paymentrequest import PaymentRequest
-from electrum_ltc.i18n import _
-from electrum_ltc_gui.qt.util import text_dialog, EnterButton
+from electrum_gmc.paymentrequest import PR_UNPAID, PR_PAID, PR_EXPIRED
+from electrum_gmc.plugins import BasePlugin, hook
+from electrum_gmc import util
+from electrum_gmc.paymentrequest import PaymentRequest
+from electrum_gmc.i18n import _
+from electrum_gmc_gui.qt.util import text_dialog, EnterButton
 
 
 
@@ -93,7 +93,7 @@ class Processor(threading.Thread):
         part = MIMEBase('application', "gamecredits-paymentrequest")
         part.set_payload(payment_request)
         Encoders.encode_base64(part)
-        part.add_header('Content-Disposition', 'attachment; filename="payreq.ltc"')
+        part.add_header('Content-Disposition', 'attachment; filename="payreq.gmc"')
         msg.attach(part)
         s = smtplib.SMTP_SSL(self.imap_server, timeout=2)
         s.login(self.username, self.password)
@@ -140,7 +140,7 @@ class Plugin(BasePlugin):
         menu.addAction(_("Send via e-mail"), lambda: self.send(window, addr))
 
     def send(self, window, addr):
-        from electrum_ltc import paymentrequest
+        from electrum_gmc import paymentrequest
         r = window.wallet.receive_requests.get(addr)
         message = r.get('memo', '')
         if r.get('signature'):
@@ -172,7 +172,7 @@ class Plugin(BasePlugin):
         return EnterButton(_('Settings'), self.settings_dialog)
 
     def settings_dialog(self, x):
-        from electrum_ltc_gui.qt.util import Buttons, CloseButton, OkButton
+        from electrum_gmc_gui.qt.util import Buttons, CloseButton, OkButton
 
         d = QDialog(self.settings_window)
         d.setWindowTitle("Email settings")

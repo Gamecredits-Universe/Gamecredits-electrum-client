@@ -22,9 +22,9 @@
 from __future__ import absolute_import
 import android
 
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage, format_satoshis
-from electrum_ltc.bitcoin import is_address, COIN
-from electrum_ltc import util
+from electrum_gmc import SimpleConfig, Wallet, WalletStorage, format_satoshis
+from electrum_gmc.bitcoin import is_address, COIN
+from electrum_gmc import util
 from decimal import Decimal
 import datetime, re
 
@@ -134,7 +134,7 @@ def make_layout(s, scrollable = False):
 
         <TextView
           android:id="@+id/textElectrum"
-          android:text="Electrum-LTC"
+          android:text="Electrum-GMC"
           android:textSize="7pt"
           android:textColor="#ff4444ff"
           android:gravity="left"
@@ -440,7 +440,7 @@ def pay_to(recipient, amount, label):
     else:
         password = None
 
-    droid.dialogCreateSpinnerProgress("Electrum-LTC", "signing transaction...")
+    droid.dialogCreateSpinnerProgress("Electrum-GMC", "signing transaction...")
     droid.dialogShow()
 
     try:
@@ -664,7 +664,7 @@ def receive_loop():
             modal_dialog('URI copied to clipboard', receive_URI)
 
         elif event["name"]=="amount":
-            amount = modal_input('Amount', 'Amount you want to receive (in LTC). ', format_satoshis(receive_amount) if receive_amount else None, "numberDecimal")
+            amount = modal_input('Amount', 'Amount you want to receive (in GMC). ', format_satoshis(receive_amount) if receive_amount else None, "numberDecimal")
             if amount is not None:
                 receive_amount = int(COIN * Decimal(amount)) if amount else None
                 out = 'receive'
@@ -885,7 +885,7 @@ def make_bitmap(data):
     droid.dialogShow()
     try:
         import qrcode
-        from electrum_ltc import bmp
+        from electrum_gmc import bmp
         qr = qrcode.QRCode()
         qr.add_data(data)
         bmp.save_qrcode(qr,"/sdcard/sl4a/qrcode.bmp")
@@ -949,7 +949,7 @@ class ElectrumGui:
                 exit()
 
             msg = "Creating wallet" if action == 'create' else "Restoring wallet"
-            droid.dialogCreateSpinnerProgress("Electrum-LTC", msg)
+            droid.dialogCreateSpinnerProgress("Electrum-GMC", msg)
             droid.dialogShow()
             wallet.start_threads(network)
             if action == 'restore':

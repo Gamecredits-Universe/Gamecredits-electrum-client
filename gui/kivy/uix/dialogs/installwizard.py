@@ -1,5 +1,5 @@
-from electrum_ltc import Wallet
-from electrum_ltc.i18n import _
+from electrum_gmc import Wallet
+from electrum_gmc.i18n import _
 
 from kivy.app import App
 from kivy.uix.widget import Widget
@@ -8,7 +8,7 @@ from kivy.clock import Clock
 from kivy.factory import Factory
 
 Factory.register('CreateRestoreDialog',
-                 module='electrum_ltc_gui.kivy.uix.dialogs.create_restore')
+                 module='electrum_gmc_gui.kivy.uix.dialogs.create_restore')
 
 import sys
 import threading
@@ -106,7 +106,7 @@ class InstallWizard(Widget):
             self.dispatch('on_wizard_complete', None)
 
     def restore_seed_dialog(self, wallet):
-        from electrum_ltc_gui.kivy.uix.dialogs.create_restore import\
+        from electrum_gmc_gui.kivy.uix.dialogs.create_restore import\
             RestoreSeedDialog
         RestoreSeedDialog(
             on_release=partial(self.on_verify_restore_ok, wallet),
@@ -160,7 +160,7 @@ class InstallWizard(Widget):
                 "[color=#929292]If you ever forget your pincode, your seed" +\
                 " phrase will be the [color=#EB984E]"+\
                 "[b]only way to recover[/b][/color] your wallet. Your " +\
-                " [color=#EB984E][b]litecoins[/b][/color] will otherwise be" +\
+                " [color=#EB984E][b]gamecreditss[/b][/color] will otherwise be" +\
                 " [color=#EB984E][b]lost forever![/b][/color]")
 
         if wallet.imported_keys:
@@ -191,7 +191,7 @@ class InstallWizard(Widget):
                                                         wallet, mode=mode))
 
 
-        from electrum_ltc_gui.kivy.uix.dialogs.create_restore import InitSeedDialog
+        from electrum_gmc_gui.kivy.uix.dialogs.create_restore import InitSeedDialog
         InitSeedDialog(message=msg2,
             seed_msg=brainwallet, on_release=on_ok_press, mode=mode).open()
 
@@ -302,7 +302,7 @@ class InstallWizard(Widget):
                 self.load_wallet()
             self.app.update_wallet()
 
-        from electrum_ltc_gui.kivy.uix.dialogs.create_restore import ChangePasswordDialog
+        from electrum_gmc_gui.kivy.uix.dialogs.create_restore import ChangePasswordDialog
         cpd = ChangePasswordDialog(
                              message=msg,
                              mode=mode,

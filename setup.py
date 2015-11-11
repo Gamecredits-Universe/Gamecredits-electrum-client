@@ -18,12 +18,12 @@ data_files = []
 if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     usr_share = os.path.join(sys.prefix, "share")
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-ltc.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-ltc.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-gmc.desktop']),
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-gmc.png'])
     ]
 
 setup(
-    name="Electrum-LTC",
+    name="Electrum-GMC",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes>=0.1a1',
@@ -31,29 +31,29 @@ setup(
         'pbkdf2',
         'requests',
         'qrcode',
-        'ltc_scrypt',
+        'gmc_scrypt',
         'protobuf',
         'dnspython',
     ],
     package_dir={
-        'electrum_ltc': 'lib',
-        'electrum_ltc_gui': 'gui',
-        'electrum_ltc_plugins': 'plugins',
+        'electrum_gmc': 'lib',
+        'electrum_gmc_gui': 'gui',
+        'electrum_gmc_plugins': 'plugins',
     },
-    packages=['electrum_ltc','electrum_ltc_gui','electrum_ltc_gui.qt','electrum_ltc_plugins'],
+    packages=['electrum_gmc','electrum_gmc_gui','electrum_gmc_gui.qt','electrum_gmc_plugins'],
     package_data={
-        'electrum_ltc': [
+        'electrum_gmc': [
             'www/index.html',
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
     },
-    scripts=['electrum-ltc'],
+    scripts=['electrum-gmc'],
     data_files=data_files,
     description="Lightweight Gamecredits Wallet",
     author="Thomas Voegtlin",
     author_email="thomasv@electrum.org",
     license="GNU GPLv3",
-    url="http://electrum-ltc.org",
+    url="http://electrum-gmc.org",
     long_description="""Lightweight Gamecredits Wallet"""
 )
