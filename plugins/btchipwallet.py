@@ -219,7 +219,7 @@ class BTChipWallet(BIP32_HD_Wallet):
                     pin = pin.encode()
                     self.client.verifyPin(pin)
                     if self.canAlternateCoinVersions:
-                        self.client.setAlternateCoinVersions(48, 5)
+                        self.client.setAlternateCoinVersions(38, 5)
 
             except BTChipException, e:
                 try:
@@ -409,7 +409,7 @@ class BTChipWallet(BIP32_HD_Wallet):
                 output = address
                 if not self.canAlternateCoinVersions:
                     v, h = bc_address_to_hash_160(address)
-                    if v == 48:
+                    if v == 38:
                         output = hash_160_to_bc_address(h, 0)
                 outputAmount = amount
 

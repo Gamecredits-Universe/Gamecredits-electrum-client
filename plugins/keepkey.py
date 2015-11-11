@@ -319,7 +319,7 @@ class Plugin(BasePlugin):
                 txoutputtype.address = address
             txoutputtype.amount = amount
             addrtype, hash_160 = bc_address_to_hash_160(address)
-            if addrtype == 48:
+            if addrtype == 38:
                 txoutputtype.script_type = types.PAYTOADDRESS
             elif addrtype == 5:
                 txoutputtype.script_type = types.PAYTOSCRIPTHASH

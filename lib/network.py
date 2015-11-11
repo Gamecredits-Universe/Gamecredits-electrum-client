@@ -21,21 +21,7 @@ from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 DEFAULT_PORTS = {'t':'50001', 's':'50002', 'h':'8081', 'g':'8082'}
 
 DEFAULT_SERVERS = {
-    'electrum.cryptomachine.com': DEFAULT_PORTS,
-    'electrum-gmc.bysh.me': DEFAULT_PORTS,
-    'electrum-gmc.koddos.com': DEFAULT_PORTS,
-    'electrum-gmc.thwg.org': DEFAULT_PORTS,
-    'electrum.dragonzone.net': {'t':'50003', 's':'50004'},
-    'electrum.gamecreditsers.nl': DEFAULT_PORTS,
-    'electrum.gamecreditsguard.com': DEFAULT_PORTS,
-    'electrum.gmc.xurious.com': DEFAULT_PORTS,
-    'electrum.lurkmore.com': DEFAULT_PORTS,
-    'electrum.snicter.com': DEFAULT_PORTS,
-    'electrum.petrkr.net': {'t':'60001', 's':'60002'},
-    'egmc.osl2.i2p.io': DEFAULT_PORTS,
-    'glacialsoftware.net': DEFAULT_PORTS,
-    'gmc2.electrum-servers.us': DEFAULT_PORTS,
-    'rho.hicapacity.org': DEFAULT_PORTS,
+    '5.196.70.166': DEFAULT_PORTS,
 }
 
 NODES_RETRY_INTERVAL = 60

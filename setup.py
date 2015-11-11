@@ -31,7 +31,7 @@ setup(
         'pbkdf2',
         'requests',
         'qrcode',
-        'gmc_scrypt',
+        'ltc_scrypt',
         'protobuf',
         'dnspython',
     ],
